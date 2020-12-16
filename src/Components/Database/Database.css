@@ -1,0 +1,32 @@
+table {
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+th {
+  background-color: lightblue;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.tables-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+label {
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+}
