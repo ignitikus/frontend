@@ -40,6 +40,7 @@ export default function Database() {
 
   const handleOnClick = async () => {
     const request = inputField.split(" ").join("%20");
+    console.log(request);
     const result = await axios.get(
       `https://niko-flask-mysql.herokuapp.com/mysql/post/${request}/`
     );
@@ -47,6 +48,15 @@ export default function Database() {
 
   return (
     <div>
+      <div className="command-input">
+        <label>MYSQL Command: </label>
+        <textarea
+          cols="15"
+          rows="1"
+          onChange={(e) => setInputField(e.target.value)}
+        ></textarea>
+        <button onClick={handleOnClick}>Submit query</button>
+      </div>
       <h2>Team Savory Salamanders</h2>
       {tableData.map((entry, i) => (
         <div className="tables-div" key={i}>
@@ -62,9 +72,12 @@ export default function Database() {
             <tbody>
               {entry.map((data, i) => (
                 <tr key={i}>
-                  {Object.values(data).map((piece, i) => (
-                    <td key={piece + i}>{piece}</td>
-                  ))}
+                  {Object.values(data).map((piece, i) => {
+                    if (`${piece}`.includes("password")) {
+                      return <td>**********</td>;
+                    }
+                    return <td key={piece + i}>{piece}</td>;
+                  })}
                 </tr>
               ))}
             </tbody>

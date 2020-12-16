@@ -30,3 +30,14 @@ label {
 h2 {
   text-align: center;
 }
+
+.command-input {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
