@@ -29,15 +29,34 @@ label {
 
 h2 {
   text-align: center;
+  margin-top: 60px;
 }
 
 .command-input {
   display: flex;
-  flex-direction: column;
-  width: 20%;
-  justify-content: center;
+  /* flex-direction: column; */
+  /* justify-content: center; */
   align-items: center;
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  opacity: 0.9;
+  color: green;
+  font-size: 1.5em;
+  font-family: "SFMono-Regular", monospace;
+}
+
+.command-input input {
+  background-color: black;
+  color: green;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 1em;
+  font-family: "SFMono-Regular", monospace;
+}
+
+.x-button:hover {
+  cursor: pointer;
 }

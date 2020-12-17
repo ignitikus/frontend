@@ -40,7 +40,7 @@ export default function Database() {
     getInfo();
   }, []);
 
-  const handleOnClick = async () => {
+  const submitQuery = async () => {
     try {
       const request = inputField.split(" ").join("%20");
       const result = await axios.get(
@@ -49,6 +49,7 @@ export default function Database() {
       );
       successToast(`Query: ${result.data} executed`);
       console.log(result.data);
+      setInputField("");
       getInfo();
     } catch (error) {
       failureToast(error.response.data);
@@ -56,16 +57,24 @@ export default function Database() {
     }
   };
 
+  const handleOnKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      submitQuery();
+    }
+  };
+
   return (
     <div>
       <div className="command-input">
-        <label>MYSQL Command: </label>
-        <textarea
-          cols="15"
-          rows="1"
+        <label>mysql></label>
+        <input
+          onKeyDown={handleOnKeyDown}
           onChange={(e) => setInputField(e.target.value)}
-        ></textarea>
-        <button onClick={handleOnClick}>Submit query</button>
+          value={inputField}
+        ></input>
+        <label onClick={() => setInputField("")} className="x-button">
+          x
+        </label>
       </div>
       <h2>Team Savory Salamanders</h2>
       {tableData.map((entry, i) => (
@@ -84,7 +93,7 @@ export default function Database() {
                 <tr key={i}>
                   {Object.values(data).map((piece, i) => {
                     if (`${piece}`.includes("password")) {
-                      return <td>**********</td>;
+                      return <td key={piece + i}>**********</td>;
                     }
                     return <td key={piece + i}>{piece}</td>;
                   })}
