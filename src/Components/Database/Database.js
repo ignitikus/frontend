@@ -31,6 +31,7 @@ export default function Database() {
       setTableNames(data.map((entry) => Object.keys(entry)[0].split("`")[1]));
       setTableData(data.map((entry) => Object.values(entry)[0]));
     } catch (error) {
+      failureToast(error.message);
       console.log(error.message);
     }
   };
@@ -43,8 +44,8 @@ export default function Database() {
     try {
       const request = inputField.split(" ").join("%20");
       const result = await axios.get(
-        // `https://niko-flask-mysql.herokuapp.com/mysql/post/${request}/`
-        `http://localhost:5000/mysql/post/${request}/`
+        `https://niko-flask-mysql.herokuapp.com/mysql/post/${request}/`
+        // `http://localhost:5000/mysql/post/${request}/`
       );
       successToast(`Query: ${result.data} executed`);
       console.log(result.data);
