@@ -14,7 +14,7 @@ export default function Database() {
       const {
         data: { tables_in_db_project: tables },
       } = await axios.get(
-        "https://niko-flask-mysql.herokuapp.com/mysql/PROJECT"
+        "https://niko-flask-mysql.herokuapp.com/mysql/PROJECT/"
       );
 
       const results = await axios.all(
@@ -25,7 +25,6 @@ export default function Database() {
             )
         )
       );
-
       const data = results.map(({ data }) => data);
       console.log(data);
       setTableNames(data.map((entry) => Object.keys(entry)[0].split("`")[1]));
