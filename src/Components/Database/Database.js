@@ -14,14 +14,14 @@ export default function Database() {
       const {
         data: { tables_in_db_project: tables },
       } = await axios.get(
-        "https://niko-flask-mysql.herokuapp.com/mysql/db_project/"
+        "https://niko-flask-mysql.herokuapp.com/mysql/PROJECT"
       );
 
       const results = await axios.all(
         tables.map(
           async (table) =>
             await axios.get(
-              `https://niko-flask-mysql.herokuapp.com/mysql/db_project/\`${table}\`/`
+              `https://niko-flask-mysql.herokuapp.com/mysql/PROJECT/\`${table}\`/`
             )
         )
       );
